@@ -11,11 +11,16 @@ export class HomePage {
 
   variavel_lista = [];
   texto: string = "";
+  preco: number = 0;
+  variavel_preco = [];
 
   adiciona() {
-    if (!(this.texto == "")) {
+    if (!(this.texto == "" && this.preco == 0)) {
       this.variavel_lista.push(this.texto);
+      this.variavel_preco.push(this.preco);
       this.texto = "";
+      this.preco = 0;
+
     }
 
       /*
