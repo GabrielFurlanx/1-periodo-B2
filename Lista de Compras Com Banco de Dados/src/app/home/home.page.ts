@@ -17,12 +17,15 @@ export class HomePage {
     this.atualizaLista();
   }
 
-  variavel_lista = [[]];
+  variavel_lista = [];
   texto: string = "";
+  preco: string = "";
+  quanti: string = "";
+  resultado: number;
   aux = 0;
 
   async adiciona() {
-    if (!(this.texto == "")) {
+    if (!(this.texto == ""  &&this.preco == "" && this.quanti == "")) {
       //this.variavel_lista.push("0", this.texto);
 
       this.variavel_lista.forEach(item => {
@@ -31,18 +34,22 @@ export class HomePage {
         }
       })
       this.aux = this.aux + 1;
-      await this.storage.set(this.aux.toString(), this.texto);
+      await this.storage.set(this.aux.toString(), [this.texto, this.preco,this.quanti]);
       this.atualizaLista();
+      this.resultado = parseInt(this.preco)*parseInt(this.quanti);
       this.texto = "";
+      this.preco = "";
+      this.quanti = "";
+
     }
 
-      /*
+
     if (this.texto == "") {
 
     } else{
       this.variavel_lista.push(this.texto);
       this.texto = "";
-    }*/
+    }
 
   }
 
@@ -53,11 +60,13 @@ export class HomePage {
     })
   }
 
-  remove(indice) {
-    this.variavel_lista.splice(indice, 1)
+  async remove(indice) {
+    //this.variavel_lista.splice(indice, 1)
+    await this.storage.remove(indice);
+    this.atualizaLista();
   }
 
-  //*ngFor = "let elemento_da_lista of minhaLista" no item
+  //ngFor = "let elemento_da_lista of minhaLista" no item
   //[(ngModel)]="texto" no input
 
 }

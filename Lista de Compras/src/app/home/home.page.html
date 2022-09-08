@@ -1,6 +1,26 @@
+
 <ion-content [fullscreen]="true">
   <div id="posicionamento">
+    <ion-col>
+      <img src ="assets/Lista de Compras.png" width="235" height="70" >
+    </ion-col>
     <ion-grid>
+      <ion-row>
+        <ion-col>
+          <img src ="assets/Soma-Produtos.png" width="500" height="50" >
+        </ion-col>
+        <ion-col size="4">
+         <ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                {{resultado}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+         </ion-item>
+        </ion-col>
+      </ion-row>
       <ion-row>
         <ion-col size="4">
           <ion-item>
@@ -13,7 +33,7 @@
         </ion-item>
         </ion-col>
         <ion-col size="3">
-          <ion-button color="success" size="default" (click)="adiciona()">
+          <ion-button color="success" size="default" (click)="adiciona()" (click)="soma()">
             <ion-icon name="save-outline"></ion-icon>
           </ion-button>
         </ion-col>
@@ -24,10 +44,11 @@
             <ion-grid>
               <ion-row>
                 <ion-col size="6">
-                  {{elemento_da_lista}}{{variavel_preco[i]}}
+                  {{elemento_da_lista}} {{variavel_preco[i]}} <ins style="text-decoration: none;">R$</ins>
+
                 </ion-col>
-                <ion-col size="3">
-                  <ion-button color="danger" size="default" (click)="remove(i)">
+                <ion-col size="4">
+                  <ion-button style="margin-left: 45px;" color="danger" size="default" (click)="remove(i)">
                     <ion-icon name="trash-outline"></ion-icon>
                   </ion-button>
                 </ion-col>
@@ -36,7 +57,9 @@
           </ion-item>
         </ion-col>
       </ion-row>
+
     </ion-grid>
+
 
   </div>
 </ion-content>
